@@ -22,7 +22,7 @@
     .prompt { color:var(--green); text-shadow:0 0 10px #53ff7860 }.path { color:var(--cyan) }
     h1 { margin:9px 0 14px; font-size:clamp(27px,7vw,42px); line-height:1.18; letter-spacing:-.055em; color:var(--green); text-shadow:0 0 20px #53ff7840 }
     .ride { margin:18px 0 22px; overflow:hidden; border:1px solid #285536; border-radius:6px; background:#07100a; position:relative }
-    .ride img { display:block; width:100%; aspect-ratio:16/9; object-fit:cover; opacity:.88; filter:saturate(.9) contrast(1.08) }
+    .ride img { display:block; width:100%; max-height:560px; aspect-ratio:4/7; object-fit:contain; background:#060807 }
     .ride figcaption { position:absolute; bottom:9px; left:11px; padding:3px 8px; border:1px solid #55ff7870; border-radius:3px; color:#c7ffd0; background:#041008ce; font-size:11px }
     .output { display:grid; gap:10px; margin:20px 0 18px }
     .row { display:grid; grid-template-columns:120px 1fr; gap:8px; opacity:.45; transform:translateY(5px); animation:show .85s ease forwards }
@@ -50,7 +50,7 @@
     <main>
       <div><span class="prompt">root@localhost</span>:<span class="path">~</span>$ whoami</div>
       <h1>desassocia<span class="cursor" aria-hidden="true"></span></h1>
-      <figure class="ride"><img src="assets/garage-ostentacao.jpg" alt="Carro esportivo preto em garagem escura com luzes verdes e cédulas caindo" loading="eager"><figcaption>NEON GARAGE // 010101</figcaption></figure>
+      <figure class="ride"><img src="assets/pingente.jpg" alt="Pingente dourado com as palavras sabedoria, lealdade e respeito, fotografado diante de uma tela colorida" loading="eager"></figure>
       <div class="output" aria-live="polite">
         <div class="row"><span class="key">nick ::</span><span class="value">desassocia</span></div>
         <div class="row"><span class="key">stack ::</span><span class="value chips"><span class="chip">Python</span><span class="chip">HTML</span><span class="chip">Kotlin</span><span class="chip">Java</span></span></div>
