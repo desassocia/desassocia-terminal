@@ -4,68 +4,71 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="theme-color" content="#050907" />
-  <meta name="description" content="Terminal pessoal de desassocia — perfil de programação." />
-  <title>desassocia — terminal</title>
+  <meta name="description" content="Perfil de programação de desassocia em estilo terminal." />
+  <title>desassocia // terminal</title>
   <style>
-    :root { color-scheme:dark; --bg:#050907; --panel:#080e0a; --line:#183522; --muted:#6d9277; --text:#d8ffe0; --green:#53ff78; --cyan:#83ffc1; --lime:#bdff69; }
+    :root { color-scheme:dark; --bg:#050907; --panel:#080e0a; --line:#1b4227; --muted:#82a58a; --text:#dcffe3; --green:#53ff78; --cyan:#83ffc1; --lime:#bdff69; }
     * { box-sizing:border-box }
-    body { margin:0; min-height:100vh; display:grid; place-items:center; padding:24px; background:radial-gradient(ellipse at 50% 0%,#0c2915 0%,#050907 58%); color:var(--text); font:15px/1.75 ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace; position:relative; overflow-x:hidden }
-    body::before { content:""; position:fixed; inset:0; pointer-events:none; opacity:.13; background:repeating-linear-gradient(0deg,transparent 0 3px,#07150b 4px 5px); z-index:2 }
-    .glow { position:fixed; inset:0; pointer-events:none; opacity:.13; background:linear-gradient(110deg,transparent 35%,#2bff5b 50%,transparent 65%); transform:translateX(-100%); animation:scan 9s ease-in-out infinite }
-    .shell { width:min(800px,100%); overflow:hidden; border:1px solid #245331; border-radius:10px; background:rgba(7,14,9,.97); box-shadow:0 0 0 1px #0c2112,0 20px 90px #000b,0 0 55px #16a34a20; position:relative }
+    body { margin:0; min-height:100vh; display:grid; place-items:center; padding:24px; background:radial-gradient(ellipse at 50% 0%,#0c2915 0%,#050907 58%); color:var(--text); font:15px/1.7 ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace; position:relative; overflow-x:hidden }
+    body::before { content:""; position:fixed; inset:0; pointer-events:none; opacity:.11; background:repeating-linear-gradient(0deg,transparent 0 3px,#07150b 4px 5px); z-index:2 }
+    .money-rain { position:fixed; inset:0; overflow:hidden; pointer-events:none; z-index:0 }
+    .note { position:absolute; top:-40px; left:var(--x); width:30px; height:16px; display:grid; place-items:center; border:1px solid #55ff7866; border-radius:3px; color:#80ff91; background:#10431a99; box-shadow:0 0 12px #53ff7825; font-size:10px; opacity:.42; animation:fall var(--speed) linear var(--delay) infinite }
+    .glow { position:fixed; inset:0; pointer-events:none; opacity:.1; background:linear-gradient(110deg,transparent 35%,#2bff5b 50%,transparent 65%); transform:translateX(-100%); animation:scan 12s ease-in-out infinite; z-index:0 }
+    .shell { width:min(800px,100%); overflow:hidden; border:1px solid #245331; border-radius:10px; background:rgba(7,14,9,.96); box-shadow:0 20px 90px #000c,0 0 55px #16a34a20; position:relative; z-index:1 }
     .bar { height:46px; display:flex; align-items:center; gap:8px; padding:0 16px; border-bottom:1px solid var(--line); background:#0b140d }
     .dot { width:10px;height:10px;border-radius:50% }.red{background:#ff5c57}.yellow{background:#ffd166}.green{background:var(--green);box-shadow:0 0 9px #53ff78}
     .title { margin:auto; padding-right:48px; color:#88aa8f; font-size:12px }
-    main { padding:clamp(22px,6vw,48px) }
+    main { padding:clamp(20px,5vw,38px) }
     .prompt { color:var(--green); text-shadow:0 0 10px #53ff7860 }.path { color:var(--cyan) }
-    .boot { color:var(--muted); font-size:12px; margin:0 0 14px; letter-spacing:.04em }
-    h1 { margin:10px 0 6px; font-size:clamp(29px,7vw,47px); line-height:1.18; letter-spacing:-.06em; text-shadow:0 0 20px #53ff7828 }
-    .highlight { color:var(--green) }
-    .sub { margin:0 0 30px; color:var(--muted) }
-    .output { display:grid; gap:15px; margin:26px 0 30px }
-    .row { display:grid; grid-template-columns:130px 1fr; gap:8px; opacity:0; transform:translateY(7px); animation:show 1s ease forwards }
-    .row:nth-child(1){animation-delay:1.2s}.row:nth-child(2){animation-delay:3.1s}.row:nth-child(3){animation-delay:5s}
+    h1 { margin:9px 0 14px; font-size:clamp(27px,7vw,42px); line-height:1.18; letter-spacing:-.055em; color:var(--green); text-shadow:0 0 20px #53ff7840 }
+    .ride { margin:18px 0 22px; overflow:hidden; border:1px solid #285536; border-radius:6px; background:#07100a; position:relative }
+    .ride img { display:block; width:100%; aspect-ratio:16/9; object-fit:cover; opacity:.88; filter:saturate(.9) contrast(1.08) }
+    .ride figcaption { position:absolute; bottom:9px; left:11px; padding:3px 8px; border:1px solid #55ff7870; border-radius:3px; color:#c7ffd0; background:#041008ce; font-size:11px }
+    .output { display:grid; gap:10px; margin:20px 0 18px }
+    .row { display:grid; grid-template-columns:120px 1fr; gap:8px; opacity:0; transform:translateY(5px); animation:show 1.2s ease forwards }
+    .row:nth-child(1){animation-delay:.25s}.row:nth-child(2){animation-delay:1.05s}.row:nth-child(3){animation-delay:1.85s}
     .key { color:var(--lime) }.value { color:var(--text) }
-    .chips { display:flex; flex-wrap:wrap; gap:8px }
-    .chip { padding:2px 10px; border:1px solid #285136; border-radius:4px; color:var(--cyan); background:#0a180d; font-size:13px; box-shadow:inset 0 0 12px #1e7b3320 }
-    .command { margin-top:32px; padding-top:18px; border-top:1px solid var(--line); color:#a3c9aa; font-size:13px }
+    .chips { display:flex; flex-wrap:wrap; gap:7px }
+    .chip { padding:1px 9px; border:1px solid #285136; border-radius:3px; color:var(--cyan); background:#0a180d; font-size:13px }
+    .command { margin-top:18px; padding-top:14px; border-top:1px solid var(--line); color:#a3c9aa; font-size:13px }
     .cursor { display:inline-block; width:8px; height:16px; vertical-align:-3px; margin-left:3px; background:var(--green); box-shadow:0 0 10px #53ff78; animation:blink 1.2s steps(2,start) infinite }
-    footer { margin-top:20px; color:#54745b; font-size:12px }
     @keyframes show { to {opacity:1;transform:translateY(0)} }
     @keyframes blink { to {visibility:hidden} }
     @keyframes scan { 0%,15% {transform:translateX(-100%)} 65%,100% {transform:translateX(100%)} }
+    @keyframes fall { from {transform:translate3d(0,-8vh,0) rotate(-12deg)} to {transform:translate3d(30px,115vh,0) rotate(220deg)} }
     @media(max-width:480px){body{padding:14px}.row{grid-template-columns:1fr;gap:0}.title{padding-right:0}}
-    @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important}}
+    @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-delay:0s!important;animation-iteration-count:1!important;scroll-behavior:auto!important}}
   </style>
 </head>
 <body>
+  <div class="money-rain" aria-hidden="true">
+    <span class="note" style="--x:7%;--speed:15s;--delay:-4s">$</span><span class="note" style="--x:17%;--speed:19s;--delay:-13s">$</span><span class="note" style="--x:29%;--speed:16s;--delay:-8s">$</span><span class="note" style="--x:41%;--speed:21s;--delay:-17s">$</span><span class="note" style="--x:53%;--speed:17s;--delay:-5s">$</span><span class="note" style="--x:64%;--speed:20s;--delay:-15s">$</span><span class="note" style="--x:75%;--speed:15s;--delay:-10s">$</span><span class="note" style="--x:88%;--speed:22s;--delay:-19s">$</span>
+  </div>
   <div class="glow" aria-hidden="true"></div>
-  <section class="shell" aria-label="Terminal de apresentação">
-    <div class="bar"><span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span><span class="title">desassocia@profile:~</span></div>
+  <section class="shell" aria-label="Perfil em estilo terminal">
+    <div class="bar"><span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span><span class="title">desassocia@localhost:~</span></div>
     <main>
-      <p class="boot">[ SISTEMA INICIALIZANDO... ] <span class="highlight">OK</span></p>
-      <div><span class="prompt">root@profile</span>:<span class="path">~</span>$ ./apresentacao.sh</div>
-      <h1>Olá, eu sou <span class="highlight">desassocia</span>.</h1>
-      <p class="sub">Bem-vindo(a) ao meu terminal.</p>
+      <div><span class="prompt">root@localhost</span>:<span class="path">~</span>$ whoami</div>
+      <h1>desassocia<span class="cursor" aria-hidden="true"></span></h1>
+      <figure class="ride"><img src="assets/garage-ostentacao.jpg" alt="Carro esportivo preto em garagem escura com luzes verdes e cédulas caindo" loading="eager"><figcaption>NEON GARAGE // 010101</figcaption></figure>
       <div class="output" aria-live="polite">
         <div class="row"><span class="key">nick ::</span><span class="value">desassocia</span></div>
         <div class="row"><span class="key">stack ::</span><span class="value chips"><span class="chip">Python</span><span class="chip">HTML</span><span class="chip">Kotlin</span><span class="chip">Java</span></span></div>
-        <div class="row"><span class="key">status ::</span><span class="value">aprendendo e criando <span class="highlight">[OK]</span></span></div>
+        <div class="row"><span class="key">mode ::</span><span class="value">dev // online</span></div>
       </div>
-      <div class="command"><span class="prompt">root@profile</span>:<span class="path">~</span>$ <span id="typing"></span><span class="cursor" aria-hidden="true"></span></div>
-      <footer>conexão segura // feito com código e curiosidade</footer>
+      <div class="command"><span class="prompt">root@localhost</span>:<span class="path">~</span>$ <span id="typing"></span><span class="cursor" aria-hidden="true"></span></div>
     </main>
   </section>
   <script>
-    const text = 'echo "obrigado pela visita"';
+    const text = 'cat ./profile.json';
     const target = document.getElementById('typing');
     let i = 0;
     setTimeout(() => {
       const timer = setInterval(() => {
         target.textContent += text[i++];
         if (i >= text.length) clearInterval(timer);
-      }, 150);
-    }, 6500);
+      }, 190);
+    }, 2400);
   </script>
 </body>
 </html>
