@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#080b10" />
+  <meta name="description" content="Terminal pessoal de desassocia — perfil de programação." />
+  <title>desassocia — terminal</title>
+  <style>
+    :root { color-scheme: dark; --bg:#080b10; --panel:#0e131b; --line:#202a38; --muted:#8793a5; --text:#e6edf3; --green:#4ade80; --cyan:#67e8f9; --purple:#c4b5fd; }
+    * { box-sizing:border-box }
+    body { margin:0; min-height:100vh; display:grid; place-items:center; padding:24px; background:radial-gradient(ellipse at 50% 0%,#10201d 0%,var(--bg) 52%); color:var(--text); font:15px/1.7 ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace }
+    .shell { width:min(780px,100%); overflow:hidden; border:1px solid var(--line); border-radius:14px; background:rgba(14,19,27,.96); box-shadow:0 28px 90px #0009 }
+    .bar { height:46px; display:flex; align-items:center; gap:8px; padding:0 16px; border-bottom:1px solid var(--line); background:#111722 }
+    .dot { width:11px;height:11px;border-radius:50% }.red{background:#fb7185}.yellow{background:#facc15}.green{background:#4ade80}
+    .title { margin:auto; padding-right:52px; color:var(--muted); font-size:12px }
+    main { padding:clamp(22px,6vw,48px) }
+    .prompt { color:var(--green) }.path { color:var(--cyan) }
+    h1 { margin:10px 0 6px; font-size:clamp(30px,7vw,48px); line-height:1.15; letter-spacing:-.06em }
+    .sub { margin:0 0 30px; color:var(--muted) }
+    .output { display:grid; gap:13px; margin:26px 0 30px }
+    .row { display:grid; grid-template-columns:120px 1fr; gap:8px; opacity:0; transform:translateY(5px); animation:show .45s ease forwards }
+    .row:nth-child(1){animation-delay:.55s}.row:nth-child(2){animation-delay:1.05s}.row:nth-child(3){animation-delay:1.55s}.row:nth-child(4){animation-delay:2.05s}
+    .key { color:var(--purple) }.value { color:var(--text) }
+    .chips { display:flex; flex-wrap:wrap; gap:8px }
+    .chip { padding:3px 10px; border:1px solid #29384a; border-radius:999px; color:var(--cyan); background:#101a24; font-size:13px }
+    .command { margin-top:32px; padding-top:18px; border-top:1px solid var(--line); color:var(--muted); font-size:13px }
+    .cursor { display:inline-block; width:8px; height:16px; vertical-align:-3px; margin-left:3px; background:var(--green); animation:blink 1s steps(2,start) infinite }
+    footer { margin-top:20px; color:#667386; font-size:12px }
+    @keyframes show { to {opacity:1;transform:translateY(0)} } @keyframes blink { to {visibility:hidden} }
+    @media(max-width:480px){body{padding:14px}.row{grid-template-columns:1fr;gap:0}.title{padding-right:0}}
+    @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important}}
+  </style>
+</head>
+<body>
+  <section class="shell" aria-label="Terminal de apresentação">
+    <div class="bar"><span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span><span class="title">desassocia@profile: ~</span></div>
+    <main>
+      <div><span class="prompt">➜</span> <span class="path">~</span> ./apresentacao.sh</div>
+      <h1>Olá, eu sou <span style="color:var(--green)">desassocia</span>.</h1>
+      <p class="sub">Bem-vindo(a) ao meu cantinho na internet.</p>
+      <div class="output" aria-live="polite">
+        <div class="row"><span class="key">nick:</span><span class="value">desassocia</span></div>
+        <div class="row"><span class="key">idade:</span><span class="value">15 anos</span></div>
+        <div class="row"><span class="key">linguagens:</span><span class="value chips"><span class="chip">Python</span><span class="chip">HTML</span><span class="chip">Kotlin</span><span class="chip">Java</span></span></div>
+        <div class="row"><span class="key">status:</span><span class="value">aprendendo e criando<span style="color:var(--green)"> ✓</span></span></div>
+      </div>
+      <div class="command"><span class="prompt">➜</span> <span class="path">~</span> <span id="typing"></span><span class="cursor" aria-hidden="true"></span></div>
+      <footer>Feito com código e curiosidade.</footer>
+    </main>
+  </section>
+  <script>
+    const text = 'echo "obrigado pela visita"';
+    const target = document.getElementById('typing');
+    let i = 0;
+    setTimeout(() => { const timer = setInterval(() => { target.textContent += text[i++]; if (i >= text.length) clearInterval(timer); }, 65); }, 2500);
+  </script>
+</body>
+</html>
