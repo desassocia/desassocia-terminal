@@ -21,18 +21,14 @@
     main { padding:clamp(20px,5vw,38px) }
     .prompt { color:var(--green); text-shadow:0 0 10px #53ff7860 }.path { color:var(--cyan) }
     h1 { margin:9px 0 14px; font-size:clamp(27px,7vw,42px); line-height:1.18; letter-spacing:-.055em; color:var(--green); text-shadow:0 0 20px #53ff7840 }
-    .ride { margin:18px 0 22px; overflow:hidden; border:1px solid #285536; border-radius:6px; background:#07100a; position:relative }
-    .ride img { display:block; width:100%; max-height:560px; aspect-ratio:4/7; object-fit:contain; background:#060807 }
-    .ride figcaption { position:absolute; bottom:9px; left:11px; padding:3px 8px; border:1px solid #55ff7870; border-radius:3px; color:#c7ffd0; background:#041008ce; font-size:11px }
+    .ride { width:min(100%,200px); margin:12px auto 18px; overflow:hidden; border:1px solid #285536; border-radius:6px; background:#07100a }
+    .ride img { display:block; width:100%; height:auto; object-fit:contain }
     .output { display:grid; gap:10px; margin:20px 0 18px }
     .row { display:grid; grid-template-columns:120px 1fr; gap:8px; opacity:.45; transform:translateY(5px); animation:show .85s ease forwards }
     .row:nth-child(1){animation-delay:0s}.row:nth-child(2){animation-delay:.18s}.row:nth-child(3){animation-delay:.36s}
     .key { color:var(--lime) }.value { color:var(--text) }
     .chips { display:flex; flex-wrap:wrap; gap:7px }
     .chip { padding:1px 9px; border:1px solid #285136; border-radius:3px; color:var(--cyan); background:#0a180d; font-size:13px }
-    .file-entry { margin:16px 0; padding:9px 11px; border:1px solid var(--line); border-radius:4px; color:var(--muted); font-size:12px; overflow-wrap:anywhere }
-    .file-entry a { color:var(--green); text-decoration:none }
-    .file-entry a:hover { text-decoration:underline }
     .command { margin-top:18px; padding-top:14px; border-top:1px solid var(--line); color:#a3c9aa; font-size:13px }
     .cursor { display:inline-block; width:8px; height:16px; vertical-align:-3px; margin-left:3px; background:var(--green); box-shadow:0 0 10px #53ff78; animation:blink 1.2s steps(2,start) infinite }
     @keyframes show { to {opacity:1;transform:translateY(0)} }
@@ -59,7 +55,6 @@
         <div class="row"><span class="key">stack ::</span><span class="value chips"><span class="chip">Python</span><span class="chip">HTML</span><span class="chip">Kotlin</span><span class="chip">Java</span></span></div>
         <div class="row"><span class="key">mode ::</span><span class="value">dev // online</span></div>
       </div>
-      <div class="file-entry">FILE :: <a href="files/free-fire-codigos-oficiais.txt" download>free-fire-codigos-oficiais.txt // baixar</a></div>
       <div class="command"><span class="prompt">root@localhost</span>:<span class="path">~</span>$ <span id="typing"></span><span class="cursor" aria-hidden="true"></span></div>
     </main>
   </section>
